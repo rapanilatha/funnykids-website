@@ -1,0 +1,48 @@
+ <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lessons | SunnyKids</title>
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1 class="logo">SunnyKids 🌞</h1>
+    <nav>
+        <a href="index.html" class="nav-btn">Home🏠</a>
+        <a href="Quizzes.html" class="nav-btn">Quizzes🧠</a>
+    </nav>
+</header>
+
+<main>
+
+    <h2 class="title"><u>🌈English📖</u></h2>
+
+    <!-- ⭐ LESSON VIEWER FIRST -->
+    <div id="lessonViewer" class="lesson-container hidden">
+        <button class="backBtn" onclick="closeViewer()">⬅ Back</button>
+        <h3 id="viewerTitle"></h3>
+
+        <div id="viewerContent" class="muted"></div>
+
+        <div style="margin-top:12px">
+            <button class="btn" onclick="markComplete()">Mark Complete</button>
+            <button class="btn" onclick="speakLesson()">🔈 Read</button>
+        </div>
+    </div>
+
+    <!-- ⭐ GRID AFTER -->
+    <div id="lessonsGrid" class="lessons-grid"></div>
+
+</main>
+
+<script src="Sounds.js"></script>
+<script src="Rewards.js"></script>
+<script src="Lessons.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

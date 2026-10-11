@@ -1,0 +1,46 @@
+ <!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>हिंदी अक्षरमाला</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- same CSS -->
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <h1>हिंदी अक्षरमाला 🎧</h1>
+  <nav>
+      <a href="index.html" class="nav-btn">Home🏠</a>
+      <a href="Quizzes.html" class="nav-btn">Quizzes🧠</a>
+    </nav>
+</header>
+
+<main>
+
+  <h2 class="center-title">स्वर (Hindi Vowels)</h2>
+  <div id="vowels" class="grid"></div>
+
+  <button class="speak-btn" onclick="playVowels()">🔊 Speak Vowels</button>
+
+  <h2 class="center-title">व्यंजन (Hindi Consonants)</h2>
+  <div id="consonants" class="grid"></div>
+
+  <button class="speak-btn" onclick="playConsonants()">🔊 Speak Consonants</button>
+
+  <h2 class="center-title">बारहखड़ी (Barakhadi)</h2>
+  <div id="barakhadi" class="grid"></div>
+
+  <button class="speak-btn"  onclick="playBarakhadi()">🔊 Speak Barakhadi</button>
+
+</main>
+
+<!-- Hindi JS -->
+<script src="Sounds.js"></script>
+<script src="Script.js"></script>
+<script src="Hindi.js"></script>
+</body>
+</html>

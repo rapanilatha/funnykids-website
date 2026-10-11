@@ -1,0 +1,45 @@
+ <!doctype html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <title>తెలుగు అక్షరాలు</title>
+
+    <!-- Mobile Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1>తెలుగు అక్షరాలు 🎧</h1>
+    <nav>
+        <a href="index.html" class="nav-btn">Home🏠</a>
+        <a href="Quizzes.html" class="nav-btn">Quizzes🧠</a>
+    </nav>
+</header>
+
+<main>
+    <h2 class="center-title">అచ్చులు (Vowels)</h2>
+
+    <div id="vowels" class="grid"></div>
+
+    <button class="speak-btn" onclick="playVowels()">🎤 Speak Vowels</button>
+    <h2 class="center-title">హల్లులు (Consonants)</h2>
+
+    <div id="consonants" class="grid"></div>
+
+    <button class="speak-btn" onclick="playConsonants()">🎤 Speak Consonants</button>
+    <h2 class="center-title">గుణింతాలు (Guninthalu)</h2>
+    <div id="guninthalu" class="grid"></div>
+    <button class="speak-btn" onclick="playGuninthalu()">🎤 Speak Guninthalu</button>
+
+
+
+</main>
+<script src="Sounds.js"></script>
+<script src="Script.js"></script>
+<script src="Telugu.js"></script>
+</body>
+</html>
