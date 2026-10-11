@@ -1,3 +1,3 @@
-## 🔗 GitHub Repository
+ ## 🌐 GitHub Repository
 
-[View FunnyKids Source Code](https://github.com/rapanilatha/funnykids-website)
+[View the FunnyKids source code](https://github.com/rapanilatha/funnykids-website)
