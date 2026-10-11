@@ -13,7 +13,7 @@ An interactive kids' learning website built using HTML5, CSS3, and JavaScript. F
 - ⭐ Rewards section
 - 🖼️ Colorful images and visual elements
 - 🔊 Audio and music controls
-- 📱 Responsive, browser-based learning experience
+- 📱 Browser-based learning experience
 
 ## 🛠️ Technologies Used
 
@@ -42,6 +42,10 @@ An interactive kids' learning website built using HTML5, CSS3, and JavaScript. F
 ## 🌐 GitHub Repository
 
 [View FunnyKids Source Code](https://github.com/rapanilatha/funnykids-website)
+
+## 🚀 Live Demo
+
+[Visit FunnyKids Website](https://rapanilatha.github.io/funnykids-website/)
 
 ## 👩‍💻 Developer
 
