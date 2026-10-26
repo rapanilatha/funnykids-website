@@ -1,14 +1,14 @@
-
+ 
 /* ---------- SPEAK FUNCTION ---------- */
 function speakTelugu(text) {
-  speechSynthesis.cancel();
+  window.speechSynthesis.cancel();
 
   const msg = new SpeechSynthesisUtterance(text);
   msg.lang = "te-IN";
   msg.rate = 0.9;
   msg.pitch = 1;
 
-  speechSynthesis.speak(msg);
+  window.speechSynthesis.speak(msg);
 }
 
 // ---------------- VOWELS ----------------
@@ -96,7 +96,7 @@ function loadCards(list, elementId) {
   const container = document.getElementById(elementId);
 
   if (!container) {
-    console.warn(`Container not found: ${elementId}`);
+    console.error("Card container not found:", elementId);
     return;
   }
 
@@ -111,13 +111,19 @@ function loadCards(list, elementId) {
     letter.textContent = item.l;
 
     const img = document.createElement("img");
-    img.src = `images/${item.img}`;
+
+    // Images are stored in the root images folder.
+    img.src = new URL(
+      `./images/${item.img}`,
+      document.baseURI
+    ).href;
+
     img.alt = item.w;
     img.loading = "lazy";
 
-    // Show a helpful message in the console if an image is missing.
-    img.onerror = () => {
-      console.error(`Image not found: ${img.src}`);
+    img.onerror = function () {
+      console.error("Could not load image:", item.img, "URL:", img.src);
+      img.alt = "Image unavailable";
     };
 
     const word = document.createElement("div");
@@ -128,23 +134,31 @@ function loadCards(list, elementId) {
     card.appendChild(img);
     card.appendChild(word);
 
-    card.addEventListener("click", () => speakTelugu(item.w));
+    card.addEventListener("click", () => {
+      speakTelugu(item.w);
+    });
 
     container.appendChild(card);
   });
 }
 
 // ---------------- LOAD ON PAGE ----------------
-document.addEventListener("DOMContentLoaded", () => {
+function initializeTeluguPage() {
   loadCards(VOWELS, "vowels");
   loadCards(CONSONANTS, "consonants");
   loadCards(GUNINTHALU, "guninthalu");
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeTeluguPage);
+} else {
+  initializeTeluguPage();
+}
 
 // ---------------- SPEAK ONE BY ONE ----------------
 function speakList(list) {
   let i = 0;
-  speechSynthesis.cancel();
+  window.speechSynthesis.cancel();
 
   function next() {
     if (i >= list.length) return;
@@ -158,7 +172,7 @@ function speakList(list) {
       next();
     };
 
-    speechSynthesis.speak(msg);
+    window.speechSynthesis.speak(msg);
   }
 
   next();
