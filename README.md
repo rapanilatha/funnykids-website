@@ -45,7 +45,7 @@ An interactive kids' learning website built using HTML5, CSS3, and JavaScript. F
 
 ## 🚀 Live Demo
 
-[Visit FunnyKids Website](https://rapanilatha.github.io/funnykids-website/)
+[Visit FunnyKids Website]()
 
 ## 👩‍💻 Developer
 
