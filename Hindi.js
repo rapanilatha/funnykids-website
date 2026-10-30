@@ -80,60 +80,44 @@ const BARAKHADI = [
   { l: "कौ", w: "कौआ", img: "crow.png" }
 ];
 
+ 
 /* ---------- CREATE CARDS ---------- */
 function loadCards(list, elementId) {
   const container = document.getElementById(elementId);
-  if (!container) return;
+
+  if (!container) {
+    console.error("Container not found:", elementId);
+    return;
+  }
+
   container.innerHTML = "";
 
   list.forEach(item => {
     const card = document.createElement("div");
     card.className = "card";
 
-    card.innerHTML = `
-      <div class="letter"><b>${item.l}</b></div>
-  <img src="../images/${item.img}" alt="">
-      <div class="word"><b>${item.w}</b></div>
-    `;
+    const letter = document.createElement("div");
+    letter.className = "letter";
+    letter.innerHTML = `<b>${item.l}</b>`;
+
+    const img = document.createElement("img");
+    img.src = `./images/${item.img}`;
+    img.alt = item.w;
+
+    img.onerror = () => {
+      console.error("Image not found:", img.src);
+    };
+
+    const word = document.createElement("div");
+    word.className = "word";
+    word.innerHTML = `<b>${item.w}</b>`;
+
+    card.appendChild(letter);
+    card.appendChild(img);
+    card.appendChild(word);
 
     card.onclick = () => speakHindi(item.w);
+
     container.appendChild(card);
   });
-}
-
-/* ---------- LOAD ON PAGE ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  loadCards(HINDI_VOWELS, "vowels");
-  loadCards(HINDI_CONSONANTS, "consonants");
-  loadCards(BARAKHADI, "barakhadi");
-});
-
-/* ---------- SPEAK ONE BY ONE ---------- */
-function speakList(list) {
-  let i = 0;
-  speechSynthesis.cancel();
-
-  function next() {
-    if (i < list.length) {
-      const msg = new SpeechSynthesisUtterance(list[i].w);
-      msg.lang = "hi-IN";
-      msg.rate = 0.9;
-      msg.onend = next;
-      speechSynthesis.speak(msg);
-      i++;
-    }
-  }
-  next();
-}
-
-function playVowels() {
-  speakList(HINDI_VOWELS);
-}
-
-function playConsonants() {
-  speakList(HINDI_CONSONANTS);
-}
-
-function playBarakhadi() {
-  speakList(BARAKHADI);
 }
