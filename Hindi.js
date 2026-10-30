@@ -1,13 +1,34 @@
- /* ---------- SPEAK FUNCTION ---------- */
-function speakHindi(text) {
-  speechSynthesis.cancel(); // stop previous
-  const msg = new SpeechSynthesisUtterance(text);
-  msg.lang = "hi-IN";
-  msg.rate = 0.9;
-  msg.pitch = 1;
-  speechSynthesis.speak(msg);
-}
 
+ 
+
+/* ---------- SPEAK FUNCTION ---------- */
+
+function speakHindi(text) {
+    if (!text || !("speechSynthesis" in window)) return;
+
+    speechSynthesis.cancel();
+
+    const voices = speechSynthesis.getVoices();
+
+    const selectedVoice = voices.find(v =>
+        v.name.includes("स्वरा") && v.lang === "hi-IN"
+    );
+
+    console.log("Selected Hindi voice:", selectedVoice?.name);
+
+    const msg = new SpeechSynthesisUtterance(text);
+
+    if (selectedVoice) {
+        msg.voice = selectedVoice;
+    }
+
+    msg.lang = "hi-IN";
+    msg.rate = 1;
+    msg.pitch = 1;
+    msg.volume = 1;
+
+    speechSynthesis.speak(msg);
+}
 /* ---------- HINDI VOWELS ---------- */
  const HINDI_VOWELS = [
   { l: "अ", w: "अनार", img: "pomegranate.png" },
@@ -62,7 +83,7 @@ const HINDI_CONSONANTS = [
   { l: "ह", w: "हाथी", img: "elephant.png" },
   { l: "क्ष", w: "क्षीर", img: "milk.png" },
   { l: "त्र", w: "त्रिशूल", img: "trident.png" },
-   { l: "त्ज्ञ", w: "ज्ञान", img: "book2.png" },
+   { l: "ज्ञ", w: "ज्ञान", img: "book2.png" },
   
 ];
 
@@ -75,10 +96,26 @@ const BARAKHADI = [
   { l: "कु", w: "कुत्ता", img: "dog.png" },
   { l: "कू", w: "कूड़ा", img: "trash.png" },
   { l: "के", w: "केला", img: "banana.png" },
-  { l: "कै", w: "कैची", img: "scissors.png" },
+  { l: "कै", w: "कैंची", img: "scissors.png" },
   { l: "को", w: "कोयल", img: "bird.png" },
   { l: "कौ", w: "कौआ", img: "crow.png" }
 ];
+/* ---------- PLAY ALL BUTTON FUNCTIONS ---------- */
+
+function playVowels() {
+    const text = HINDI_VOWELS.map(item => item.w).join("। ");
+    speakHindi(text);
+}
+
+function playConsonants() {
+    const text = HINDI_CONSONANTS.map(item => item.w).join("। ");
+    speakHindi(text);
+}
+
+function playBarakhadi() {
+    const text = BARAKHADI.map(item => item.w).join("। ");
+    speakHindi(text);
+}
 
   
 /* ---------- CREATE CARDS ---------- */

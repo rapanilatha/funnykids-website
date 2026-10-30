@@ -73,18 +73,42 @@ function markComplete(){
   alert('Marked complete — star awarded!');
 }
 
- function speakLesson(){
-   const text = document.getElementById("viewerContent").innerText;
+ 
 
-   const speech = new SpeechSynthesisUtterance(text);
 
-   speech.rate = 0.10;   // 🔹 speed
-   speech.pitch = 0.05;    // voice pitch
-   speech.volume = 2;   // volume
+function speakLesson() {
+    const viewer = document.getElementById("viewerContent");
 
-   speechSynthesis.cancel(); // stop previous
-   speechSynthesis.speak(speech);
- }
+    if (!viewer) {
+        console.error("Lesson content not found!");
+        return;
+    }
+
+    const text = viewer.innerText.trim();
+    if (!text) return;
+
+    const voices = speechSynthesis.getVoices();
+
+    const selectedVoice = voices.find(v =>
+        v.name.includes("Heera") && v.lang === "en-IN"
+    );
+
+    if (!selectedVoice) {
+        console.error("Heera voice is not available.");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.voice = selectedVoice;
+    msg.lang = "en-IN";
+    msg.rate = 1;
+    msg.pitch = 1;
+    msg.volume = 1;
+
+    speechSynthesis.speak(msg);
+}
 
 
 // badge helper (simple)
