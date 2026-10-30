@@ -80,7 +80,7 @@ const BARAKHADI = [
   { l: "कौ", w: "कौआ", img: "crow.png" }
 ];
 
- 
+  
 /* ---------- CREATE CARDS ---------- */
 function loadCards(list, elementId) {
   const container = document.getElementById(elementId);
@@ -121,3 +121,10 @@ function loadCards(list, elementId) {
     container.appendChild(card);
   });
 }
+
+/* ---------- LOAD ALL HINDI CARDS ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  loadCards(HINDI_VOWELS, "vowels");
+  loadCards(HINDI_CONSONANTS, "consonants");
+  loadCards(BARAKHADI, "barakhadi");
+});
